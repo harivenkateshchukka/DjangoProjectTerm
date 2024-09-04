@@ -1,0 +1,75 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}View Submissions{% endblock %}
+
+{% block content %}
+<style>
+    .submissions-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        padding: 30px;
+        background: #f0f8ff; /* Light background color */
+    }
+
+    .submissions-container h2 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .submissions-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 800px; /* Restrict maximum width */
+    }
+
+    .submission-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        color: #333;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .submission-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .submission-card a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .submission-card a:hover {
+        text-decoration: underline;
+    }
+</style>
+<nav>
+        <a href="{% url 'admin_base' %}"></a>
+        <a href="{% url 'upload_question' %}">Upload Question</a>
+        <a href="{% url 'view_submissions' %}">View Submissions</a>
+
+        <a href="{% url 'logout' %}">Logout</a>
+    </nav>
+<div class="submissions-container">
+    <h2>View Submissions</h2>
+    <div class="submissions-list">
+        {% for submission in submissions %}
+            <div class="submission-card">
+                <span>{{ submission.user.first_name }} {{ submission.user.last_name }}</span>
+                <a href="{% url 'grade_submission' submission.id %}">Grade</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

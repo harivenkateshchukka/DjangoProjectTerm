@@ -1,0 +1,58 @@
+{% extends 'user_base.html' %}
+
+{% block title %}Question List{% endblock %}
+
+{% block content %}
+<style>
+    .question-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .card {
+        background: linear-gradient(to bottom right, #add8e6, #90ee90); /* Light blue and light green */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        color: #333; /* Darker text for better contrast */
+        width: 200px;
+    }
+
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card p {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    .card a {
+        color: #333; /* Darker link color for better contrast */
+        text-decoration: none;
+        font-weight: bold;
+        background-color: rgba(0, 0, 0, 0.1);
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .card a:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<h2>Question Papers</h2>
+<div class="question-list">
+    {% for question in questions %}
+        <div class="card">
+            <div class="card-content">
+                <p>{{ question.uploaded_at }}</p>
+                <a href="{{ question.pdf.url }}">Download</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

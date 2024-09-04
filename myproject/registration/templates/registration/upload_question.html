@@ -1,0 +1,14 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}Upload Question{% endblock %}
+
+{% block content %}
+<center>
+<h2>Upload New Question</h2>
+    </center>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+</form>
+{% endblock %}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Education Website{% endblock %}</title>
+    <style>
+        /* General styling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #7FFFD4, #87CEFA); /* Green-blue gradient */
+        }
+
+        /* Header styling */
+        header {
+            background-color: #3CB371; /* Green */
+            color: white;
+            padding: 2px 0;
+            text-align: center;
+            font-size: 14px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Navbar styling */
+        nav {
+            background-color: #1E90FF; /* Blue */
+            overflow: hidden;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            top: 50px;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            background-color: #333;
+            color: white;
+            transition: 0.3s;
+        }
+
+        /* Container for main content */
+        .container {
+            padding: 100px 20px; /* Adjusted to account for the fixed header and navbar */
+            min-height: calc(100% - 180px); /* Adjust based on footer height */
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #3CB371; /* Green */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Form styling for login and register */
+        form {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+
+
+        /* Page title styling */
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Education Website</h1>
+    </header>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </nav>
+    <div class="container">
+        {% block content %}
+        <!-- Main content goes here -->
+        {% endblock %}
+    </div>
+    <footer>
+        <p>&copy; 2024 Education Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}Logged Out{% endblock %}
+
+{% block content %}
+    <div class="container mt-4 text-center">
+        <h1>You have been logged out</h1>
+        <p>You will be redirected to the login page shortly.</p>
+        <a href="{% url 'login' %}" class="btn btn-primary">Go to Login</a>
+    </div>
+    <script>
+        // Redirect to login page after 3 seconds
+        setTimeout(function() {
+            window.location.href = "{% url 'login' %}";
+        }, 3000);
+    </script>
+{% endblock %}

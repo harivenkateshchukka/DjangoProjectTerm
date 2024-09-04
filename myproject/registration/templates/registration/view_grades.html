@@ -1,0 +1,59 @@
+{% extends 'user_base.html' %}
+
+{% block title %}View Grades{% endblock %}
+
+{% block content %}
+<style>
+    .submission-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .card {
+        background: linear-gradient(to bottom right, #add8e6, #90ee90); /* Light blue and light green */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        color: #333; /* Darker text for better contrast */
+        width: 250px; /* Adjust width if necessary */
+    }
+
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card p {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    .card a {
+        color: #333; /* Darker link color for better contrast */
+        text-decoration: none;
+        font-weight: bold;
+        background-color: rgba(0, 0, 0, 0.1);
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .card a:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<h2>View Grades</h2>
+<div class="submission-list">
+    {% for submission in submissions %}
+        <div class="card">
+            <div class="card-content">
+                <p>{{ submission.question.uploaded_at }}</p>
+                <p>Score: {{ submission.grade.score }}</p>
+                <p>Feedback: {{ submission.grade.feedback }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
